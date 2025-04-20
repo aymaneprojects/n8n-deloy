@@ -1,39 +1,29 @@
-# 🚀 Ayman8n — Déploiement N8N sur Render
-
-Déploie ton propre serveur N8N gratuitement, hébergé en Europe (🇫🇷 Frankfurt), avec une base de données PostgreSQL nommée `AymaneDB`.
+# 🚀 Ayman8n — Deploy N8N to Render (Easy Mode)
 
 [![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/aymaneprojects/n8n-deloy)
 
 ---
 
-## ⚙️ Fonctionnalités
+## 📦 How to install n8n on render.com for free
 
-- Hébergement gratuit avec [Render](https://render.com)
-- Base de données PostgreSQL (`AymaneDB`)
-- Localisation 🇫🇷 : Timezone Europe/Paris, langue française
-- Clé de chiffrement générée automatiquement
-- Authentification et sécurité configurables (via variables d'environnement)
+Follow these steps:
 
----
-
-## 🚀 Déploiement en 1 clic
-
-1. Clique sur le bouton violet "Deploy to Render"
-2. Choisis un nom pour ton projet
-3. Crée les ressources
-4. Prends un café ☕ pendant que Render travaille
-5. C’est en ligne 🎉
+1. Click on the **Deploy to Render** button above
+2. Choose a name for your project (example: `Ayman8n`)
+3. Click on **Create New Resources**
+4. Go to your Render Dashboard > click on your service > Environment
+5. Copy your public Render URL (the purple one at the top)
+6. Paste that URL as the value for `WEBHOOK_URL` in your environment
+7. Wait ~1 minute for N8N to restart
+8. Enjoy your own automation server!
 
 ---
 
-## 🧠 Bonus (optionnel)
+## ℹ️ Notes
 
-Tu peux configurer :
-
-- Authentification (`N8N_BASIC_AUTH_USER` / `PASSWORD`)
-- Intégration avec des services : Gmail, Airtable, Notion, etc.
-- Ajout de tes propres workflows
+- This Render instance is **free for 90 days**, then you’ll need to upgrade the database (~7$/mo)
+- Built by Aymane, based on a template from Antoine Deschamps & ready4mars
 
 ---
 
-**Made with 💻 by Aymane**
+**🚀 Your automations start now!**

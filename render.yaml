@@ -1,35 +1,38 @@
 services:
   - type: web
-    name: n8n
+    name: Ayman8n
     env: docker
-    region: frankfurt # optional (defaults to oregon)
-    plan: free # optional (defaults to starter)
-    branch: main # optional (defaults to master)
+    region: frankfurt
+    plan: free
+    branch: main
     numInstances: 1
     healthCheckPath: /healthz
     envVars:
+      # Base de données
       - key: DB_TYPE
         value: postgresdb
       - key: DB_POSTGRESDB_HOST
         fromDatabase:
-          name: n8nDB
+          name: AymaneDB
           property: host
       - key: DB_POSTGRESDB_DATABASE
         fromDatabase:
-          name: n8nDB
+          name: AymaneDB
           property: database
       - key: DB_POSTGRESDB_PORT
         fromDatabase:
-          name: n8nDB
+          name: AymaneDB
           property: port
       - key: DB_POSTGRESDB_USER
         fromDatabase:
-          name: n8nDB
+          name: AymaneDB
           property: user
       - key: DB_POSTGRESDB_PASSWORD
         fromDatabase:
-          name: n8nDB
+          name: AymaneDB
           property: password
+
+      # Configuration générale
       - key: PORT
         value: 5678
       - key: N8N_LOG_LEVEL
@@ -43,7 +46,23 @@ services:
       - key: N8N_ENCRYPTION_KEY
         generateValue: true
 
+      # Webhooks & nom de domaine
+      - key: N8N_HOST
+        value: ayman8n.onrender.com
+      - key: N8N_PROTOCOL
+        value: https
+      - key: WEBHOOK_TUNNEL_URL
+        value: https://ayman8n.onrender.com
+
+      # Authentification
+      - key: N8N_BASIC_AUTH_ACTIVE
+        value: true
+      - key: N8N_BASIC_AUTH_USER
+        value: admin
+      - key: N8N_BASIC_AUTH_PASSWORD
+        value: supermotdepasse123
+
 databases:
-  - name: n8nDB
-    region: frankfurt # optional (defaults to oregon)
+  - name: AymaneDB
+    region: frankfurt
     plan: free
