@@ -1,86 +1,49 @@
 services:
   - type: web
-    name: Ayman8n
+    name: n8n
     env: docker
-    region: frankfurt
-    plan: free
-    branch: main
+    region: frankfurt # optional (defaults to oregon)
+    plan: free # optional (defaults to starter)
+    branch: main # optional (defaults to master)
     numInstances: 1
     healthCheckPath: /healthz
     envVars:
-      # 🗃️ Base de données PostgreSQL (auto liée)
       - key: DB_TYPE
         value: postgresdb
       - key: DB_POSTGRESDB_HOST
         fromDatabase:
-          name: AymaneDB
+          name: n8nDB
           property: host
       - key: DB_POSTGRESDB_DATABASE
         fromDatabase:
-          name: AymaneDB
+          name: n8nDB
           property: database
       - key: DB_POSTGRESDB_PORT
         fromDatabase:
-          name: AymaneDB
+          name: n8nDB
           property: port
       - key: DB_POSTGRESDB_USER
         fromDatabase:
-          name: AymaneDB
+          name: n8nDB
           property: user
       - key: DB_POSTGRESDB_PASSWORD
         fromDatabase:
-          name: AymaneDB
+          name: n8nDB
           property: password
-
-      # 🌍 Port
       - key: PORT
         value: 5678
-
-      # 🌐 Domaine & protocole
-      - key: N8N_HOST
-        value: ayman8n.onrender.com
-      - key: N8N_PROTOCOL
-        value: https
-
-      # 🔁 Webhooks
-      - key: WEBHOOK_TUNNEL_URL
-        value: https://ayman8n.onrender.com
-
-      # 🕓 Localisation & logs
+      - key: N8N_LOG_LEVEL
+        value: info
       - key: GENERIC_TIMEZONE
         value: Europe/Paris
       - key: TZ
         value: Europe/Paris
       - key: N8N_DEFAULT_LOCALE
         value: fr
-      - key: N8N_LOG_LEVEL
-        value: info
-
-      # 🔐 Sécurité & chiffrement
       - key: N8N_ENCRYPTION_KEY
         generateValue: true
-      - key: N8N_BASIC_AUTH_ACTIVE
-        value: true
-      - key: N8N_BASIC_AUTH_USER
-        value: admin
-      - key: N8N_BASIC_AUTH_PASSWORD
-        value: supermotdepasse123
-
-      # ⚙️ Divers utiles
-      - key: EXECUTIONS_MODE
-        value: queue
-      - key: QUEUE_MODE
-        value: redis
-      - key: NODE_FUNCTION_ALLOW_BUILTIN
-        value: fs
-      - key: NODE_FUNCTION_ALLOW_EXTERNAL
-        value: axios,moment
-      - key: VUE_APP_URL_BASE_API
-        value: https://ayman8n.onrender.com
-      - key: N8N_DISABLE_PRODUCTION_MAIN_PROCESS
-        value: true
 
 databases:
-  - name: AymaneDB
-    region: frankfurt
+  - name: n8nDB
+    region: frankfurt # optional (defaults to oregon)
     plan: free
